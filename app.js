@@ -32,7 +32,7 @@ const   pubnub = PUBNUB({
         ssl: true
     })
     
-var n = 20,
+const n = 20,
     random = d3.random.normal(96, 2),
     data = d3.range(n).map(random),
     randomSys = d3.random.normal(120, 5),
@@ -130,11 +130,12 @@ success(message) {
      	if(start==="start") {
     var vitalsim = setInterval( _ =>{
       
-          
+ // create random patient vital data 
       spo = Math.floor(random());
       sys = Math.floor(randomSys());
       dia = Math.floor(randomDia());
-    
+      
+// Publish new data to pubnub channel for data to be consumed by subscribers 
     pubnub.publish({
     channel : channel,
     message :{
@@ -145,10 +146,15 @@ success(message) {
     }
   });
   
-    }, 2000 )}
+    }, 2000 )
+     	    
+    this.setState({
+        vitalsim: vitalsim
+    })
+     	}
     else{
-     clearInterval(vitalsim);
-     console.log("wtff")
+     clearInterval(this.state.vitalsim);
+     console.log("wtf")
     }
      
   }
@@ -171,7 +177,7 @@ success(message) {
        <button className="patientButton" onClick={()=>this.vitalsClick("start")}>
        <b className="patientText"> Start</b>
        </button>
-        <button className="patientButton" onClick={()=>this.vitalsClick("false")}>
+        <button className="patientButton" onClick={()=>this.vitalsClick("stop")}>
        <b className="patientText"> Stop</b>
        </button> 
        </div> 

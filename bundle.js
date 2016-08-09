@@ -202,10 +202,12 @@
 	      if (start === "start") {
 	        var vitalsim = setInterval(function (_) {
 
+	          // create random patient vital data 
 	          spo = Math.floor(random());
 	          sys = Math.floor(randomSys());
 	          dia = Math.floor(randomDia());
 
+	          // Publish new data to pubnub channel for data to be consumed by subscribers 
 	          pubnub.publish({
 	            channel: channel,
 	            message: {
@@ -216,9 +218,13 @@
 	            }
 	          });
 	        }, 2000);
+
+	        this.setState({
+	          vitalsim: vitalsim
+	        });
 	      } else {
-	        clearInterval(vitalsim);
-	        console.log("wtff");
+	        clearInterval(this.state.vitalsim);
+	        console.log("wtf");
 	      }
 	    }
 	  }, {
@@ -278,7 +284,7 @@
 	          _react2.default.createElement(
 	            'button',
 	            { className: 'patientButton', onClick: function onClick() {
-	                return _this4.vitalsClick("false");
+	                return _this4.vitalsClick("stop");
 	              } },
 	            _react2.default.createElement(
 	              'b',
