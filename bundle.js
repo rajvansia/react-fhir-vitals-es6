@@ -151,7 +151,7 @@
 	      });
 	    }
 
-	    // get the patient info from fhir api      
+	    // function to get the patient data from fhir api and set its state     
 
 	  }, {
 	    key: 'getPatient',
@@ -196,6 +196,9 @@
 	        dataGraph: this.state.dataGraph.concat([message.spo])
 	      });
 	    }
+
+	    // on click start generating random patient data 
+
 	  }, {
 	    key: 'vitalsClick',
 	    value: function vitalsClick(start) {
@@ -223,8 +226,9 @@
 	          vitalsim: vitalsim
 	        });
 	      } else {
+	        // stop generating random data by clearing interval 
 	        clearInterval(this.state.vitalsim);
-	        console.log("wtf");
+	        console.log("stop");
 	      }
 	    }
 	  }, {
@@ -293,9 +297,6 @@
 	            )
 	          )
 	        ),
-	        _react2.default.createElement(_PulseOx.PulseOx, null),
-	        _react2.default.createElement(_BloodPressure.BloodPressure, null),
-	        _react2.default.createElement(_PatientInfo.PatientInfo, { mrn: this.state.mrn, age: this.state.age, fullname: this.state.fullname, spo: this.state.spo, lower: this.state.lower, upper: this.state.upper, dataGraph: this.state.dataGraph }),
 	        _react2.default.createElement(_PatientVitals.PatientVitals, { mrn: this.state.mrn, age: this.state.age, fullname: this.state.fullname, spo: this.state.spo, dia: this.state.dia, sys: this.state.sys, dataGraph: this.state.dataGraph, lower: this.state.lower, upper: this.state.upper }),
 	        _react2.default.createElement(_PatientVitalsSp.PatientVitalsSp, { mrn: this.state.mrn, age: this.state.age, fullname: this.state.fullname, spo: this.state.spo }),
 	        _react2.default.createElement(_PatientVitalsBp.PatientVitalsBp, { mrn: this.state.mrn, age: this.state.age, fullname: this.state.fullname, dia: this.state.dia, sys: this.state.sys })
@@ -21745,7 +21746,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'span',
-	          { style: this.props.spo >= 95 ? styleNormal : styleHigh, className: 'numOfViewers' },
+	          { style: this.props.spo >= 95 ? styleNormal : styleHigh, className: 'number' },
 	          this.props.spo,
 	          '%'
 	        )
@@ -21810,12 +21811,12 @@
 	        null,
 	        _react2.default.createElement(
 	          'span',
-	          { className: 'streamerName' },
+	          { className: 'vitalNumber' },
 	          'BP'
 	        ),
 	        _react2.default.createElement(
 	          'span',
-	          { style: this.props.sys <= 140 && this.props.sys >= 90 && this.props.dia <= 90 && this.props.dia >= 60 ? styleNormal : styleHigh, className: 'numOfViewers' },
+	          { style: this.props.sys <= 140 && this.props.sys >= 90 && this.props.dia <= 90 && this.props.dia >= 60 ? styleNormal : styleHigh, className: 'number' },
 	          this.props.sys,
 	          '/',
 	          this.props.dia,
@@ -21874,7 +21875,7 @@
 	        null,
 	        _react2.default.createElement(
 	          'span',
-	          { className: 'streamerGame' },
+	          { className: 'patientInfo' },
 	          _react2.default.createElement(
 	            'strong',
 	            null,
@@ -21897,7 +21898,7 @@
 	            ' '
 	          )
 	        ),
-	        _react2.default.createElement('p', { className: 'streamTitle' })
+	        _react2.default.createElement('p', { className: 'heading' })
 	      );
 	    }
 	  }]);
@@ -21956,7 +21957,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'container twitchSearchApp' },
+	        { className: 'container vitalsDash' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
@@ -22110,7 +22111,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'container twitchSearchApp' },
+	        { className: 'container vitalsDash' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
@@ -22187,7 +22188,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'container twitchSearchApp' },
+	        { className: 'container vitalsDash' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },

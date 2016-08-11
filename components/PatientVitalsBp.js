@@ -8,7 +8,7 @@ import {PatientInfo} from './PatientInfo'
 export class PatientVitalsBp extends React.Component {
   render () {
     return (
-      <div className="container twitchSearchApp">
+      <div className="container vitalsDash">
          <div className="row">
         <div className="stuff">
           <ul id="streamerList" className="list-group">

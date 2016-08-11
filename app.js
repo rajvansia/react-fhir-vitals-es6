@@ -84,16 +84,16 @@ this.getPatient("9995679")
       
       }
       
-// get the patient info from fhir api      
+// function to get the patient data from fhir api and set its state     
 getPatient(idd){
 
-var demo = {
+let demo = {
     serviceUrl: "https://fhir-open-api-dstu2.smarthealthit.org",        //allows you to connect to your smar server and query a patient 
     patientId: idd // josuah p willams hca-pat-55 1137192
     };
 
 // Create a FHIR client (server URL, patient id in `demo`)
-var smart = FHIR.client(demo),
+let smart = FHIR.client(demo),
     pt = smart.patient;  
   
 pt.read()
@@ -126,9 +126,10 @@ success(message) {
     });
   }
   
+  // on click start generating random patient data 
  vitalsClick(start){
-     	if(start==="start") {
-    var vitalsim = setInterval( _ =>{
+    if(start==="start") {
+    let vitalsim = setInterval( _ =>{
       
  // create random patient vital data 
       spo = Math.floor(random());
@@ -153,8 +154,9 @@ success(message) {
     })
      	}
     else{
+// stop generating random data by clearing interval 
      clearInterval(this.state.vitalsim);
-     console.log("wtf")
+     console.log("stop")
     }
      
   }
@@ -181,10 +183,7 @@ success(message) {
        <b className="patientText"> Stop</b>
        </button> 
        </div> 
-    <PulseOx />
-    <BloodPressure />
-    <PatientInfo  mrn={this.state.mrn} age={this.state.age} fullname={this.state.fullname} spo={this.state.spo} lower={this.state.lower} upper={this.state.upper} dataGraph={this.state.dataGraph} />
-    <PatientVitals  mrn={this.state.mrn} age={this.state.age} fullname={this.state.fullname} spo={this.state.spo} dia={this.state.dia} sys={this.state.sys}  dataGraph={this.state.dataGraph}  lower={this.state.lower} upper={this.state.upper} />
+    <PatientVitals    mrn={this.state.mrn} age={this.state.age} fullname={this.state.fullname} spo={this.state.spo} dia={this.state.dia} sys={this.state.sys}  dataGraph={this.state.dataGraph}  lower={this.state.lower} upper={this.state.upper} />
     <PatientVitalsSp  mrn={this.state.mrn} age={this.state.age} fullname={this.state.fullname} spo={this.state.spo} />
     <PatientVitalsBp  mrn={this.state.mrn} age={this.state.age} fullname={this.state.fullname}  dia={this.state.dia} sys={this.state.sys} />
     </div>
